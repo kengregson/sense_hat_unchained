@@ -78,13 +78,13 @@ char filename[32];
 		fprintf(stderr, "Failed to open the i2c bus; need to run as sudo?\n");
 		return -1;
 	}
-
+/*
 	if (ioctl(file_led, I2C_SLAVE, 0x46) < 0)
 	{
 		fprintf(stderr, "Failed to acquire bus for LED matrix\n");
 		goto badexit;
 	}
-
+*/
 	file_acc = open(filename, O_RDWR);
 	if (ioctl(file_acc, I2C_SLAVE, 0x6a) < 0)
 	{
@@ -99,9 +99,10 @@ char filename[32];
 	}
 
 	// Fill the LED with black
+/*
 	memset(LEDArray, 0, sizeof(LEDArray));
 	i2cWrite(file_led, 0, LEDArray, sizeof(LEDArray));
-
+*/
 	file_hum = open(filename, O_RDWR);
 	if (ioctl(file_hum, I2C_SLAVE, 0x5f) < 0)
 	{
@@ -168,11 +169,13 @@ char filename[32];
 
 // problems opening the I2C handles/addresses
 badexit:
+/*
 	if (file_led != -1)
 	{
 		close(file_led);
 		file_led = -1;
 	}
+*/
 	if (file_hum != -1)
 	{
 		close(file_hum);

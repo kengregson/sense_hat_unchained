@@ -40,17 +40,14 @@ int main(int argc, char *argv[])
 int i;
 unsigned char ucKeys;
 
-	if (shInit(0) == 0) // Open I2C	
+	if (shInit(1) == 0) // Open I2C	
 	{
 		printf("Unable to open sense hat; is it connected?\n");
 		return -1;
 	}
-	ucKeys = 0;
-	while (ucKeys == 0) // run until joystick pressed
+	while (1) // run until joystick pressed
 	{
 	int t, h, p, x, y, z;
-		ucKeys = shReadJoystick();
-		printf("keys = %02x\n", ucKeys);
 		if (shGetTempHumid(&t, &h))
 		{
 			printf("T=%d, H=%d\n", t, h);
@@ -65,7 +62,7 @@ unsigned char ucKeys;
 		}
 		for (i=0; i<5; i++) // update pixels 5x as fast as sensor readings
 		{
-			UpdatePattern();
+			// UpdatePattern();
 			usleep(100000);
 		}
 	} // while waiting for joystick press
