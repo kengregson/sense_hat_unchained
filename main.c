@@ -38,7 +38,6 @@ uint16_t color;
 int main(int argc, char *argv[])
 {
 int i;
-unsigned char ucKeys;
 
 	if (shInit(1) == 0) // Open I2C	
 	{
